@@ -21,7 +21,7 @@ const Header = styled.div`
   font-size: 15px;
 `;
 
-const Content = styled.div`margin-top: 10px;`;
+const Content = styled.div`padding-top: 10px;`;
 
 const HeaderLabel = styled.div`margin-right: 10px;`;
 
@@ -72,7 +72,7 @@ export default function Frame({
             </Popover>
           </IconPanel>
         </Header>
-        {children}
+        <Content>{children}</Content>
       </Card>
       {node.getOutPorts().map(port => {
         return <Port node={port.getParent()} name={port.name} />;

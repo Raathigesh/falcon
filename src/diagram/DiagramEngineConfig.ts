@@ -2,7 +2,8 @@ import {
   DiagramEngine,
   DefaultLinkFactory,
   DiagramModel,
-  DefaultPortModel
+  DefaultPortModel,
+  LinkModel
 } from "storm-react-diagrams";
 import { DefaultNodeFactory } from "./NodeFactory";
 import DefaultNodeModel from "./DefaultModel";
@@ -43,23 +44,36 @@ class DiagramManager {
     this.engine.setDiagramModel(this.model);
   }
 
-  addNode(model: any) {
+  addNode(store: any, x: number, y: number) {
     const node = new DefaultNodeModel(
       "Node " + this.nodeIndex++,
       "rgb(0,192,255)",
-      model
+      store
     );
-    node.addPort(new DefaultPortModel(false, "out-1", "Out"));
-    node.addPort(new DefaultPortModel(true, "in-1", "In"));
-  /*   node.addListener({
+    const outPort = node.addPort(new DefaultPortModel(false, "out-1", "Out"));
+    const inPort = node.addPort(new DefaultPortModel(true, "in-1", "In"));
+    /*   node.addListener({
       selectionChanged: (node, isSelected) => {
         console.log(isSelected?'Selected':'Unselected', node)
       }
     }) */
-    node.x = 100;
-    node.y = 100;
+    node.x = x;
+    node.y = y;
+    store.model = node;
+    store.outPort = outPort;
+    store.inPort = inPort;
 
     this.model.addNode(node);
+  }
+
+  link(source: any, target: any) {
+    setTimeout(() => {
+      const link1 = new LinkModel();
+      link1.setSourcePort(source.outPort);
+      link1.setTargetPort(target.inPort);
+      this.model.addLink(link1);
+      this.engine.repaintCanvas();
+    }, 100);
   }
 
   getEngine() {

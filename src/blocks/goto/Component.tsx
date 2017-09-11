@@ -1,6 +1,7 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
 import styled from "styled-components";
+import ElectronHandler from "../core/ElectronHandler";
 import Frame from "../core/Frame";
 
 export interface DefaultNodeProps {
@@ -30,7 +31,20 @@ export class DefaultNodeWidget extends React.Component<
         }}
         name={this.props.store.name}
       >
-        goto
+        <div className="pt-control-group">
+          <div className="pt-input-group pt-fill">
+            <span className="pt-icon pt-icon-locate" />
+            <input type="text" className="pt-input" placeholder="Selector" />
+          </div>
+          <button
+            className="pt-button pt-intent-primary"
+            onClick={() => {
+              ElectronHandler.OpenNewWindow("http://www.google.com");
+            }}
+          >
+            Open page
+          </button>
+        </div>
       </Frame>
     );
   }

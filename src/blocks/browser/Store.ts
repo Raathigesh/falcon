@@ -1,13 +1,15 @@
 import { observable, action, asReference } from "mobx";
 import Block from "../core/Block";
 import { DefaultNodeWidget } from "./Component";
+import BlockNames from "../BlockNames";
+
 import * as Puppeteer from "puppeteer";
 
 export class Store extends Block {
   public browser: any;
   constructor() {
     super();
-    this.name = "Browser";
+    this.name = BlockNames.Browser;
     this.ComponentClass = DefaultNodeWidget;
   }
 

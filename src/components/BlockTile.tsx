@@ -3,11 +3,13 @@ import styled from "styled-components";
 import Block from "../blocks/core/Block";
 
 const TileDiv = styled.div`
-  height: 55px;
-  width: 170px;
-  float: left;
+  height: 30px;
+  width: 200px;
   margin: 5px;
   padding: 4px;
+  > span {
+    padding-right: 5px;
+  }
 `;
 
 export interface IBlockTile {

@@ -19,6 +19,9 @@ export class App extends React.Component<undefined, undefined> {
             onRun={() => {
               workflow.play();
             }}
+            onBoot={() => {
+              workflow.boot(workflow.stateStore);
+            }}
           />
         </div>
       </Provider>

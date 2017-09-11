@@ -1,5 +1,7 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
+import { EditableText } from "@blueprintjs/core";
+import styled from "styled-components";
 import Frame from "../core/Frame";
 
 export interface DefaultNodeProps {
@@ -7,6 +9,8 @@ export interface DefaultNodeProps {
   diagramEngine: DiagramEngine;
   store: any;
 }
+
+const Url = styled(EditableText)`width: 100%;`;
 
 export interface DefaultNodeState {}
 
@@ -29,7 +33,7 @@ export class DefaultNodeWidget extends React.Component<
         }}
         name={this.props.store.name}
       >
-        Page
+        <Url placeholder="Url goes here" />
       </Frame>
     );
   }

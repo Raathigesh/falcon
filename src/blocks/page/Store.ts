@@ -1,12 +1,13 @@
 import { observable, action, asReference } from "mobx";
 import Block from "../core/Block";
+import BlockNames from "../BlockNames";
 import { DefaultNodeWidget } from "./Component";
 
 export class Store extends Block {
   public page: any;
   constructor() {
     super();
-    this.name = "Page";
+    this.name = BlockNames.Page.Name;
     this.ComponentClass = DefaultNodeWidget;
   }
 
