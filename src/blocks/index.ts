@@ -7,7 +7,10 @@ import {
   Component as ScreenshotComponent,
   Store as ScreenshotStore
 } from "./screenshot";
-import { Component as GotoComponent, Store as GotoStore } from "./goto";
+import {
+  Component as ElementComponent,
+  Store as ElementStore
+} from "./element";
 import BlockNames from "./BlockNames";
 
 export interface IBlockMeta {
@@ -42,10 +45,10 @@ const Blocks: IBlockMeta[] = [
   },
   {
     Category: "Page",
-    Name: BlockNames.Page.Actions.GoTo,
-    Label: "Goto",
-    Component: GotoComponent,
-    Store: GotoStore
+    Name: BlockNames.Element,
+    Label: "Element",
+    Component: ElementComponent,
+    Store: ElementStore
   }
 ];
 

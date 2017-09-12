@@ -7,7 +7,8 @@ const Names = {
       GoTo: "GoTo",
       Screenshot: "Screenshot"
     }
-  }
+  },
+  Element: "Element"
 };
 
 export default Names;

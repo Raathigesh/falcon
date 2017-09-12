@@ -3,11 +3,12 @@ import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
 import styled from "styled-components";
 import ElectronHandler from "../core/ElectronHandler";
 import Frame from "../core/Frame";
+import { Store } from "./Store";
 
 export interface DefaultNodeProps {
   node: DefaultNodeModel;
   diagramEngine: DiagramEngine;
-  store: any;
+  store: Store;
 }
 
 export interface DefaultNodeState {}
@@ -22,6 +23,7 @@ export class DefaultNodeWidget extends React.Component<
   }
 
   render() {
+    const { store } = this.props;
     return (
       <Frame
         node={this.props.node}
@@ -36,10 +38,11 @@ export class DefaultNodeWidget extends React.Component<
             <span className="pt-icon pt-icon-locate" />
             <input type="text" className="pt-input" placeholder="Selector" />
           </div>
+          {store.pageUrl}
           <button
             className="pt-button pt-intent-primary"
             onClick={() => {
-              ElectronHandler.OpenNewWindow("http://www.google.com");
+              ElectronHandler.OpenNewWindow(store.pageUrl);
             }}
           >
             Open page

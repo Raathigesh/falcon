@@ -33,6 +33,7 @@ class DiagramManager {
             const targetNode = item.targetPort.parentNode.store;
             source.addChild(targetNode);
             targetNode.addParent(source);
+            targetNode.context = source.context;
             console.log("target port change", item, target);
           }
         });
