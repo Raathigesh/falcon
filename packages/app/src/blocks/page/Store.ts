@@ -1,5 +1,5 @@
 import { observable, action, asReference } from "mobx";
-import Block from "../core/Block";
+import { Block } from "core";
 import BlockNames from "../BlockNames";
 import { DefaultNodeWidget } from "./Component";
 

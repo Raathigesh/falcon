@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import Block from "../blocks/core/Block";
+import { Block } from "core";
 
 const TileDiv = styled.div`
   height: 30px;

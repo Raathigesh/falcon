@@ -1,5 +1,5 @@
 import { observable, action, autorun, toJS } from "mobx";
-import { getByName } from "../../blocks";
+// import { getByName } from "../../blocks";
 
 export default class Block {
   @observable public name: string;

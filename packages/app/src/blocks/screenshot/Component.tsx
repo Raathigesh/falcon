@@ -1,8 +1,6 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
-import { Checkbox, Popover, Icon, Intent } from "@blueprintjs/core";
-import Details from "./Details";
-import Frame from "../core/Frame";
+import Frame from "core";
 
 export interface DefaultNodeProps {
   node: DefaultNodeModel;
@@ -30,8 +28,8 @@ export class DefaultNodeWidget extends React.Component<
           this.props.diagramEngine.repaintCanvas();
         }}
         name={this.props.store.name}
-        details={<Details />}
       >
+        screenstff
       </Frame>
     );
   }

@@ -1,12 +1,17 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
-import Frame from "../core/Frame";
+import { EditableText } from "@blueprintjs/core";
+import styled from "styled-components";
+import Frame from "core";
+import { Store } from "./Store";
 
 export interface DefaultNodeProps {
   node: DefaultNodeModel;
   diagramEngine: DiagramEngine;
-  store: any;
+  store: Store;
 }
+
+const Url = styled(EditableText)`width: 100%;`;
 
 export interface DefaultNodeState {}
 
@@ -20,16 +25,20 @@ export class DefaultNodeWidget extends React.Component<
   }
 
   render() {
+    const { node, diagramEngine, store } = this.props;
     return (
       <Frame
-        node={this.props.node}
+        node={node}
         onRemove={() => {
-          this.props.node.remove();
-          this.props.diagramEngine.repaintCanvas();
+          node.remove();
+          diagramEngine.repaintCanvas();
         }}
         name={this.props.store.name}
       >
-        screenstff
+        <Url
+          placeholder="Url goes here"
+          onConfirm={value => store.setUrl(value)}
+        />
       </Frame>
     );
   }
