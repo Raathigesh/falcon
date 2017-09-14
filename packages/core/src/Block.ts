@@ -8,6 +8,8 @@ export default class Block {
   @observable public connectableParents?: string[];
   @observable public connectableChildren?: string[];
   @observable public ComponentClass: any;
+  @observable public isDebug: boolean;
+  @observable counter: number = 0;
   public model: any;
 
   constructor() {
@@ -17,6 +19,7 @@ export default class Block {
     this.connectableChildren = [];
     this.ComponentClass = null;
     this.model = null;
+    this.isDebug = true;
 
     autorun(() => {
       console.log(toJS(this));

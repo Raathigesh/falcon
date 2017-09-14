@@ -1,5 +1,5 @@
 import { observable, action, IObservableArray } from "mobx";
-import Block from "../blocks/core/Block";
+import { Block } from "core";
 import DiagramManager from "../diagram/DiagramEngineConfig";
 import { getByName } from "../blocks";
 
@@ -23,8 +23,9 @@ class Workflow {
 
   @action.bound
   play() {
-    // this.blocks[0].execute({});
-    this.stateStore = this.getObj();
+    this.blocks[0].execute({});
+    // this.stateStore = this.getObj();
+    // const data = require("C:/plugins/custom");
   }
 
   getObj() {

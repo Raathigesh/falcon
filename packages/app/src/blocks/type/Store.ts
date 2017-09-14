@@ -26,8 +26,7 @@ export class Store extends Block {
     return (this.parents[0] as any).url;
   }
 
-  public async execute({ page }: any) {
-    this.elementHandler = await page.$(this.selector);
-    this.children[0].execute({ page, element: this.elementHandler });
+  public async execute({ page, element }: any) {
+    await page.type("Hello world", { delay: 100 });
   }
 }

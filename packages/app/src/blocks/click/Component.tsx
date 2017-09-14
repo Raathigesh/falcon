@@ -1,6 +1,5 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
-import styled from "styled-components";
 import { ElectronHandler } from "core";
 import { Frame } from "core";
 import { Store } from "./Store";
@@ -36,14 +35,7 @@ export class DefaultNodeWidget extends React.Component<
         <div className="pt-control-group">
           <div className="pt-input-group pt-fill">
             <span className="pt-icon pt-icon-locate" />
-            <input
-              type="text"
-              className="pt-input"
-              placeholder="Selector"
-              onChange={event => {
-                store.setSelector((event.target as any).value);
-              }}
-            />
+            <input type="text" className="pt-input" placeholder="Selector" />
           </div>
           {store.pageUrl}
           <button

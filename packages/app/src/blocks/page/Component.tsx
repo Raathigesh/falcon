@@ -2,7 +2,7 @@ import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
 import { EditableText } from "@blueprintjs/core";
 import styled from "styled-components";
-import Frame from "core";
+import { Frame } from "core";
 import { Store } from "./Store";
 
 export interface DefaultNodeProps {

@@ -10,4 +10,8 @@ export default function initialize() {
     mainWindow.loadURL(url);
     mainWindow.webContents.openDevTools();
   });
+
+  ipcMain.on("loadPlugins", event => {
+    //  event.sender.send("plugins", require("C:/plugins/custom"));
+  });
 }

@@ -20,9 +20,7 @@
     "jsx": "react",
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "paths": {
-      "BlockNames": "./src/store/BlockNames"
-    }
+    "noEmitOnError": true
   },
   "formatCodeOptions": {
     "indentSize": 2,

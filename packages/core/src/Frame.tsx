@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Popover } from "@blueprintjs/core";
+import { Popover, Button } from "@blueprintjs/core";
+import { observer } from "mobx-react";
 import Port from "./Port";
 
 const Container = styled.div`
@@ -23,14 +24,14 @@ const Header = styled.div`
 
 const Content = styled.div`padding-top: 10px;`;
 
-const HeaderLabel = styled.div`margin-right: 10px;`;
-
 export interface IFrame {
   node: any;
   name: string;
-  children: any;
+  isDebug?: boolean;
+  children?: any;
   details?: any;
   onRemove: () => void;
+  onDebugToggle?: () => void;
 }
 
 const IconPanel = styled.div`
@@ -38,12 +39,14 @@ const IconPanel = styled.div`
   border-radius: 5px;
 `;
 
-export default function Frame({
+function Frame({
   node,
   name,
+  isDebug,
   children,
   details,
-  onRemove
+  onRemove,
+  onDebugToggle
 }: IFrame) {
   return (
     <Container>
@@ -54,9 +57,10 @@ export default function Frame({
         <Header>
           <IconPanel className="pt-button-group pt-minimal">
             <a className="pt-button pt-icon-applications">{name}</a>
-            <a
-              className="pt-button pt-icon-hand pt-intent-primary"
-              role="button"
+            <Button
+              iconName="pt-icon-selection"
+              onClick={onDebugToggle}
+              active={isDebug}
             />
             <a
               className="pt-button pt-icon-cross pt-intent-primary"
@@ -80,3 +84,5 @@ export default function Frame({
     </Container>
   );
 }
+
+export default observer(Frame);

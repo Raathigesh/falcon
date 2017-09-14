@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
-import Frame from "core";
+import { Frame } from "core";
 
 export interface DefaultNodeProps {
   node: DefaultNodeModel;

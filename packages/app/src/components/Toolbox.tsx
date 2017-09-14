@@ -82,7 +82,7 @@ function Toolbox({ blocks, onNewBlock, onRun, onBoot }: IToolbox) {
                 {groupedBlocks[key].map(block => {
                   return (
                     <BlockTile
-                      name={block.Name}
+                      name={block.Label}
                       onNewBlock={onNewBlock}
                       store={block.Store}
                     />

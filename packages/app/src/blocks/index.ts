@@ -1,59 +1,29 @@
-import {
-  Component as BrowserComponent,
-  Store as BrowserStore
-} from "./browser";
-import { Component as PageComponent, Store as PageStore } from "./page";
-import {
-  Component as ScreenshotComponent,
-  Store as ScreenshotStore
-} from "./screenshot";
-import {
-  Component as ElementComponent,
-  Store as ElementStore
-} from "./element";
-import BlockNames from "./BlockNames";
+import BrowserBlock from "./browser";
+import PageBlock from "./page";
+import ScreenshotBlock from "./screenshot";
+import ElementBlock from "./element";
+import ClickBlock from "./click";
+import TypeBlock from "./type";
 
 export interface IBlockMeta {
   Category?: string;
-  Name: string;
   Label: string;
   Component: any;
+  Key: string;
   Store: any;
 }
 
 const Blocks: IBlockMeta[] = [
-  {
-    Category: "Browser",
-    Name: BlockNames.Browser,
-    Label: "Browser",
-    Component: BrowserComponent,
-    Store: BrowserStore
-  },
-  {
-    Category: "Page",
-    Name: BlockNames.Page.Name,
-    Label: "Page",
-    Component: PageComponent,
-    Store: PageStore
-  },
-  {
-    Category: "Page",
-    Name: BlockNames.Page.Actions.Screenshot,
-    Label: "Screenshot",
-    Component: ScreenshotComponent,
-    Store: ScreenshotStore
-  },
-  {
-    Category: "Page",
-    Name: BlockNames.Element,
-    Label: "Element",
-    Component: ElementComponent,
-    Store: ElementStore
-  }
+  BrowserBlock,
+  PageBlock,
+  ScreenshotBlock,
+  ElementBlock,
+  ClickBlock,
+  TypeBlock
 ];
 
 export function getByName(name: string) {
-  return Blocks.filter(block => block.Name === name)[0];
+  return Blocks.filter(block => block.Key === name)[0];
 }
 
 export default Blocks;
