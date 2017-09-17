@@ -28,10 +28,12 @@ export interface IFrame {
   node: any;
   name: string;
   isDebug?: boolean;
+  icon: string;
   children?: any;
   details?: any;
-  onRemove: () => void;
+  onRemove?: () => void;
   onDebugToggle?: () => void;
+  onRemoveLink: () => void;
 }
 
 const IconPanel = styled.div`
@@ -45,8 +47,10 @@ function Frame({
   isDebug,
   children,
   details,
+  icon,
   onRemove,
-  onDebugToggle
+  onDebugToggle,
+  onRemoveLink
 }: IFrame) {
   return (
     <Container>
@@ -56,7 +60,7 @@ function Frame({
       <Card className="pt-card pt-elevation-0">
         <Header>
           <IconPanel className="pt-button-group pt-minimal">
-            <a className="pt-button pt-icon-applications">{name}</a>
+            <a className={`pt-button ${icon}`}>{name}</a>
             <Button
               iconName="pt-icon-selection"
               onClick={onDebugToggle}
@@ -79,7 +83,13 @@ function Frame({
         <Content>{children}</Content>
       </Card>
       {node.getOutPorts().map(port => {
-        return <Port node={port.getParent()} name={port.name} />;
+        return (
+          <Port
+            node={port.getParent()}
+            name={port.name}
+            onRemove={onRemoveLink}
+          />
+        );
       })}
     </Container>
   );

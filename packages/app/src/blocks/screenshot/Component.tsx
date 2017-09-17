@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
-import { Frame } from "core";
+import { Frame } from "../../../../core";
 
 export interface DefaultNodeProps {
   node: DefaultNodeModel;
@@ -22,6 +22,7 @@ export class DefaultNodeWidget extends React.Component<
   render() {
     return (
       <Frame
+        icon="pt-icon-camera"
         node={this.props.node}
         onRemove={() => {
           this.props.node.remove();

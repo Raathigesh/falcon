@@ -6,7 +6,8 @@ const Plugin = {
   Component,
   Store,
   Category: "Browser",
-  Label: "Click"
+  Label: "Click",
+  Icon: "pt-icon-select"
 };
 
 export default Plugin;

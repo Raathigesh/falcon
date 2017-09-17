@@ -1,20 +1,28 @@
 {
   "name": "core",
-  "productName": "editor",
   "version": "1.0.0",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
-  "scripts": {},
+  "main": "./src/index.tsx",
+  "types": "./src/index.d.ts",
+  "scripts": {
+    "start": "node ./build/main.js",
+    "dev": "backpack dev",
+    "build": "backpack build"
+  },
+  "license": "MIT",
   "dependencies": {
+    "@types/express": "^4.0.34",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "awesome-typescript-loader": "^3.0.0-beta.18",
+    "backpack-core": "^0.4.2",
+    "expand-range": "^2.0.1",
+    "filename-regex": "^2.0.1",
+    "tslib": "^1.7.1",
+    "typescript": "^2.5.2",
     "@blueprintjs/core": "^1.27.0",
-    "mobx": "^3.2.2",
-    "mobx-react": "^4.2.2",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-dom": "^15.6.1",
     "styled-components": "^2.1.2"
-  },
-  "devDependencies": {
-    "@types/react": "^16.0.5"
   }
 }

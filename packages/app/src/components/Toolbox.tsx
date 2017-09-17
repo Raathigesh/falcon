@@ -1,10 +1,13 @@
 import * as React from "react";
+import { toJS } from "mobx";
 import { observer } from "mobx-react";
 import Draggable from "react-draggable";
 import styled from "styled-components";
 import BlockTile from "./BlockTile";
 import ActionPanel from "./ActionPanel";
 import { IBlockMeta } from "../blocks";
+import Context from "../store/Context";
+import DebugPanel from "./DebugPanel";
 
 const Container = styled.div`
   height: 500px;
@@ -15,6 +18,12 @@ const Container = styled.div`
 `;
 
 const PlayBtn = styled.button`border-radius: 50px;`;
+const OtherBtn = styled.button`
+  border-radius: 50px;
+  margin-left: 5px;
+  float: right;
+  margin-top: 5px;
+`;
 
 const Separator = styled.div`
   height: 30px;
@@ -32,9 +41,12 @@ const Separator = styled.div`
 
 export interface IToolbox {
   blocks: IBlockMeta[];
+  context: Context;
   onNewBlock: (store: any) => void;
   onRun: () => void;
   onBoot: () => void;
+  onSave: () => void;
+  onOpen: () => void;
 }
 
 function groupBy(blocks: IBlockMeta[]) {
@@ -48,52 +60,68 @@ function groupBy(blocks: IBlockMeta[]) {
   return result;
 }
 
-function Toolbox({ blocks, onNewBlock, onRun, onBoot }: IToolbox) {
+function Toolbox({
+  blocks,
+  context,
+  onNewBlock,
+  onRun,
+  onBoot,
+  onOpen,
+  onSave
+}: IToolbox) {
   const groupedBlocks = groupBy(blocks);
   return (
-    <Draggable>
-      <Container className="pt-card">
-        <ActionPanel>
-          <PlayBtn
-            className="pt-button pt-large pt-icon-play pt-intent-success"
-            onClick={onRun}
-          />
-          <PlayBtn
-            className="pt-button pt-large pt-icon-play pt-intent-success"
-            onClick={onBoot}
-          />
-        </ActionPanel>
-        <div className="pt-input-group .modifier">
-          <span className="pt-icon pt-icon-search" />
-          <input
-            className="pt-input"
-            type="search"
-            placeholder="Search input"
-            dir="auto"
-          />
-        </div>
-        {Object.keys(groupedBlocks).map(key => {
-          return (
-            <div>
-              <Separator>
-                <span>{key}</span>
-              </Separator>
+    <div>
+      <Draggable>
+        <Container className="pt-card">
+          <ActionPanel>
+            <PlayBtn
+              className="pt-button pt-large pt-icon-play pt-intent-success"
+              onClick={onRun}
+            />
+            <OtherBtn
+              className="pt-button pt-medium pt-intent-primary pt-icon-floppy-disk"
+              onClick={onSave}
+            />
+            <OtherBtn
+              className="pt-button pt-medium pt-intent-primary pt-icon-folder-open"
+              onClick={onOpen}
+            />
+          </ActionPanel>
+          <div className="pt-input-group .modifier">
+            <span className="pt-icon pt-icon-search" />
+            <input
+              className="pt-input"
+              type="search"
+              placeholder="Search input"
+              dir="auto"
+            />
+          </div>
+          {Object.keys(groupedBlocks).map(key => {
+            return (
               <div>
-                {groupedBlocks[key].map(block => {
-                  return (
-                    <BlockTile
-                      name={block.Label}
-                      onNewBlock={onNewBlock}
-                      store={block.Store}
-                    />
-                  );
-                })}
+                <Separator>
+                  <span>{key}</span>
+                </Separator>
+                <div>
+                  {groupedBlocks[key].map(block => {
+                    return (
+                      <BlockTile
+                        name={block.Label}
+                        onNewBlock={onNewBlock}
+                        store={block.Store}
+                        icon={block.Icon}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </Container>
-    </Draggable>
+            );
+          })}
+        </Container>
+      </Draggable>
+      <DebugPanel context={context} />
+    </div>
   );
 }
 

@@ -10,7 +10,7 @@ import DefaultNodeModel from "./DefaultModel";
 
 class DiagramManager {
   engine: DiagramEngine;
-  model: DiagramModel;
+  diagramModel: DiagramModel;
   nodeIndex: number;
 
   constructor() {
@@ -19,8 +19,9 @@ class DiagramManager {
     this.engine.registerLinkFactory(new DefaultLinkFactory());
     this.nodeIndex = 0;
 
-    this.model = new DiagramModel();
-    this.model.addListener({
+    this.diagramModel = new DiagramModel();
+
+    this.diagramModel.addListener({
       linksUpdated: (entity, isAdded) => {
         console.log(isAdded ? "added" : "removed", entity);
         entity.addListener({
@@ -42,7 +43,7 @@ class DiagramManager {
         console.log(isAdded ? "added" : "removed", entity);
       }
     });
-    this.engine.setDiagramModel(this.model);
+    this.engine.setDiagramModel(this.diagramModel);
   }
 
   addNode(store: any, x: number, y: number) {
@@ -51,20 +52,16 @@ class DiagramManager {
       "rgb(0,192,255)",
       store
     );
+
     const outPort = node.addPort(new DefaultPortModel(false, "out-1", "Out"));
     const inPort = node.addPort(new DefaultPortModel(true, "in-1", "In"));
-    /*   node.addListener({
-      selectionChanged: (node, isSelected) => {
-        console.log(isSelected?'Selected':'Unselected', node)
-      }
-    }) */
     node.x = x;
     node.y = y;
     store.model = node;
     store.outPort = outPort;
     store.inPort = inPort;
 
-    this.model.addNode(node);
+    this.diagramModel.addNode(node);
   }
 
   link(source: any, target: any) {
@@ -72,9 +69,9 @@ class DiagramManager {
       const link1 = new LinkModel();
       link1.setSourcePort(source.outPort);
       link1.setTargetPort(target.inPort);
-      this.model.addLink(link1);
+      this.diagramModel.addLink(link1);
       this.engine.repaintCanvas();
-    }, 100);
+    }, 10);
   }
 
   getEngine() {

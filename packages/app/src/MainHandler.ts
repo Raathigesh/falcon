@@ -1,4 +1,5 @@
-import { BrowserWindow, ipcMain } from "electron";
+import { BrowserWindow, ipcMain, dialog } from "electron";
+const jsonfile = require("jsonfile");
 
 export default function initialize() {
   ipcMain.on("newWindow", (event, url) => {
@@ -9,6 +10,31 @@ export default function initialize() {
     });
     mainWindow.loadURL(url);
     mainWindow.webContents.openDevTools();
+  });
+
+  ipcMain.on("save", (event, arg) => {
+    dialog.showSaveDialog(
+      {
+        filters: [
+          {
+            name: "Json",
+            extensions: ["json"]
+          }
+        ]
+      },
+      filename => {
+        if (filename) {
+          jsonfile.writeFile(filename, arg.spec, function(err) {
+            if (!err) {
+              event.sender.send("onSaveSuccess", {
+                name: arg.name,
+                path: filename
+              });
+            }
+          });
+        }
+      }
+    );
   });
 
   ipcMain.on("loadPlugins", event => {

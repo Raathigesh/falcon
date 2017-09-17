@@ -4,7 +4,7 @@ import { Checkbox, Popover, Icon, Intent } from "@blueprintjs/core";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 import Details from "./Details";
-import { Frame } from "core";
+import { Frame } from "../../../../core";
 
 export interface DefaultNodeProps {
   node: DefaultNodeModel;
@@ -19,18 +19,17 @@ export class DefaultNodeWidget extends React.Component<
   DefaultNodeProps,
   DefaultNodeState
 > {
-  @observable counter: number = 0;
   constructor(props: DefaultNodeProps) {
     super(props);
     this.state = {};
   }
 
   render() {
-    var debug = this.props.store.isDebug;
-    debugger;
     return (
       <Frame
+        onRemoveLink={this.props.store.removeLink}
         isDebug={this.props.store.isDebug}
+        icon="pt-icon-applications"
         onDebugToggle={() => {
           this.props.store.toggleDebug();
         }}
@@ -41,17 +40,7 @@ export class DefaultNodeWidget extends React.Component<
         }}
         name={this.props.store.name}
         details={<Details />}
-      >
-        <button
-          onClick={() => {
-            this.props.store.count();
-          }}
-        >
-          Sample
-        </button>
-        sample
-        {this.props.store.counter}
-      </Frame>
+      />
     );
   }
 }

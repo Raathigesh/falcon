@@ -6,7 +6,8 @@ const Plugin = {
   Component,
   Store,
   Category: "Browser",
-  Label: "Browser"
+  Label: "Browser",
+  Icon: "pt-icon-applications"
 };
 
 export default Plugin;

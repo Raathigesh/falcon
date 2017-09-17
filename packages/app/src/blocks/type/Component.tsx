@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
-import { ElectronHandler } from "core";
-import { Frame } from "core";
+import { ElectronHandler } from "../../../../core";
+import { Frame } from "../../../../core";
 import { Store } from "./Store";
 
 export interface DefaultNodeProps {
@@ -25,6 +25,7 @@ export class DefaultNodeWidget extends React.Component<
     const { store } = this.props;
     return (
       <Frame
+        icon="pt-icon-text-highlight"
         node={this.props.node}
         onRemove={() => {
           this.props.node.remove();

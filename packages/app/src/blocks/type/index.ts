@@ -6,7 +6,8 @@ const Plugin = {
   Component,
   Store,
   Category: "Browser",
-  Label: "Type"
+  Label: "Type",
+  Icon: "pt-icon-text-highlight"
 };
 
 export default Plugin;

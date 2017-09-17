@@ -3,11 +3,10 @@ import { DiagramWidget } from "storm-react-diagrams";
 import { Provider } from "mobx-react";
 import Toolbox from "./components/Toolbox";
 import Workflow from "./store/Workflow";
-import BlocksManager from "./store/BlocksManager";
+import blocksManager from "./store/BlocksManager";
 import blocks from "./blocks/";
 
 const workflow = new Workflow();
-const blocksManager = new BlocksManager();
 
 export class App extends React.Component<undefined, undefined> {
   render() {
@@ -16,6 +15,7 @@ export class App extends React.Component<undefined, undefined> {
         <div>
           <DiagramWidget diagramEngine={workflow.diagramModel.getEngine()} />
           <Toolbox
+            context={workflow.context}
             blocks={blocksManager.blocksMeta}
             onNewBlock={workflow.addBlock}
             onRun={() => {
@@ -23,6 +23,12 @@ export class App extends React.Component<undefined, undefined> {
             }}
             onBoot={() => {
               workflow.boot(workflow.stateStore);
+            }}
+            onSave={() => {
+              workflow.save();
+            }}
+            onOpen={() => {
+              workflow.open();
             }}
           />
         </div>

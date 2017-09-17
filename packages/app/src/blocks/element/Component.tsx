@@ -1,9 +1,11 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
 import styled from "styled-components";
-import { ElectronHandler } from "core";
-import { Frame } from "core";
+import { ElectronHandler } from "../../../../core";
+import { Frame } from "../../../../core";
 import { Store } from "./Store";
+
+const SelectorInput = styled.input`width: 126px !important;`;
 
 export interface DefaultNodeProps {
   node: DefaultNodeModel;
@@ -27,6 +29,7 @@ export class DefaultNodeWidget extends React.Component<
     return (
       <Frame
         node={this.props.node}
+        icon="pt-icon-control"
         onRemove={() => {
           this.props.node.remove();
           this.props.diagramEngine.repaintCanvas();
@@ -36,7 +39,7 @@ export class DefaultNodeWidget extends React.Component<
         <div className="pt-control-group">
           <div className="pt-input-group pt-fill">
             <span className="pt-icon pt-icon-locate" />
-            <input
+            <SelectorInput
               type="text"
               className="pt-input"
               placeholder="Selector"

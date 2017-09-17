@@ -6,7 +6,8 @@ const Plugin = {
   Component,
   Store,
   Category: "Page",
-  Label: "Page"
+  Label: "Page",
+  Icon: "pt-icon-page-layout"
 };
 
 export default Plugin;

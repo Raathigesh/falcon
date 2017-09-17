@@ -1,8 +1,8 @@
-import { ipcRenderer } from "electron";
+// import { ipcRenderer } from "electron";
 
 const Handler = {
   OpenNewWindow(url) {
-    ipcRenderer.send("newWindow", url);
+    //ipcRenderer.send("newWindow", url);
   }
 };
 

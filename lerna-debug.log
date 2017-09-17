@@ -1,0 +1,37 @@
+0 silly input []
+1 silly flags { _: [ 'bootstrap' ],
+1 silly flags   hoist: '**',
+1 silly flags   nohoist: 'backpack-core',
+1 silly flags   args: [] }
+2 verbose rootPath D:\projects\puppeteer-editor\editor
+3 info version 2.2.0
+4 silly existsSync D:\projects\puppeteer-editor\editor\VERSION
+5 error EPACKAGES JSONError: Trailing comma in object at 23:3 in packages\core\package.json
+5 error EPACKAGES   },
+5 error EPACKAGES   ^
+5 error EPACKAGES     at module.exports (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\node_modules\parse-json\index.js:27:17)
+5 error EPACKAGES     at parse (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\node_modules\read-pkg\node_modules\load-json-file\index.js:8:29)
+5 error EPACKAGES     at Function.module.exports.sync.fp [as sync] (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\node_modules\read-pkg\node_modules\load-json-file\index.js:11:29)
+5 error EPACKAGES     at Function.module.exports.sync (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\node_modules\read-pkg\index.js:40:25)
+5 error EPACKAGES     at C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\lib\PackageUtilities.js:129:47
+5 error EPACKAGES     at Array.forEach (native)
+5 error EPACKAGES     at C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\lib\PackageUtilities.js:123:86
+5 error EPACKAGES     at Array.forEach (native)
+5 error EPACKAGES     at Function.getPackages (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\lib\PackageUtilities.js:122:22)
+5 error EPACKAGES     at Repository.buildPackageGraph (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\lib\Repository.js:86:51)
+5 error EPACKAGES  Errored while collecting packages and package graph { JSONError: Trailing comma in object at 23:3 in packages\core\package.json
+5 error EPACKAGES   },
+5 error EPACKAGES   ^
+5 error EPACKAGES     at module.exports (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\node_modules\parse-json\index.js:27:17)
+5 error EPACKAGES     at parse (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\node_modules\read-pkg\node_modules\load-json-file\index.js:8:29)
+5 error EPACKAGES     at Function.module.exports.sync.fp [as sync] (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\node_modules\read-pkg\node_modules\load-json-file\index.js:11:29)
+5 error EPACKAGES     at Function.module.exports.sync (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\node_modules\read-pkg\index.js:40:25)
+5 error EPACKAGES     at C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\lib\PackageUtilities.js:129:47
+5 error EPACKAGES     at Array.forEach (native)
+5 error EPACKAGES     at C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\lib\PackageUtilities.js:123:86
+5 error EPACKAGES     at Array.forEach (native)
+5 error EPACKAGES     at Function.getPackages (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\lib\PackageUtilities.js:122:22)
+5 error EPACKAGES     at Repository.buildPackageGraph (C:\Users\Raathigesh\AppData\Roaming\npm\node_modules\lerna\lib\Repository.js:86:51)
+5 error EPACKAGES   stack: 'JSONError: Trailing comma in object at 23:3 in packages\\core\\package.json\n  },\n  ^\n    at module.exports (C:\\Users\\Raathigesh\\AppData\\Roaming\\npm\\node_modules\\lerna\\node_modules\\parse-json\\index.js:27:17)\n    at parse (C:\\Users\\Raathigesh\\AppData\\Roaming\\npm\\node_modules\\lerna\\node_modules\\read-pkg\\node_modules\\load-json-file\\index.js:8:29)\n    at Function.module.exports.sync.fp [as sync] (C:\\Users\\Raathigesh\\AppData\\Roaming\\npm\\node_modules\\lerna\\node_modules\\read-pkg\\node_modules\\load-json-file\\index.js:11:29)\n    at Function.module.exports.sync (C:\\Users\\Raathigesh\\AppData\\Roaming\\npm\\node_modules\\lerna\\node_modules\\read-pkg\\index.js:40:25)\n    at C:\\Users\\Raathigesh\\AppData\\Roaming\\npm\\node_modules\\lerna\\lib\\PackageUtilities.js:129:47\n    at Array.forEach (native)\n    at C:\\Users\\Raathigesh\\AppData\\Roaming\\npm\\node_modules\\lerna\\lib\\PackageUtilities.js:123:86\n    at Array.forEach (native)\n    at Function.getPackages (C:\\Users\\Raathigesh\\AppData\\Roaming\\npm\\node_modules\\lerna\\lib\\PackageUtilities.js:122:22)\n    at Repository.buildPackageGraph (C:\\Users\\Raathigesh\\AppData\\Roaming\\npm\\node_modules\\lerna\\lib\\Repository.js:86:51)',
+5 error EPACKAGES   name: 'JSONError',
+5 error EPACKAGES   fileName: 'packages\\core\\package.json' }

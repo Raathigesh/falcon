@@ -1,7 +1,7 @@
 import { observable, action, IObservableArray } from "mobx";
 import blocks from "../blocks";
 
-export default class BlocksManager {
+export class BlocksManager {
   @observable public blocksMeta: IObservableArray<any>;
   constructor() {
     this.blocksMeta = observable([]);
@@ -13,3 +13,5 @@ export default class BlocksManager {
     this.blocksMeta.push(...blocks);
   }
 }
+
+export default new BlocksManager();

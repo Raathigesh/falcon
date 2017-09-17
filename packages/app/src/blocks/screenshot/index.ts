@@ -6,7 +6,8 @@ const Plugin = {
   Component,
   Store,
   Category: "Page",
-  Label: "Screenshot"
+  Label: "Screenshot",
+  Icon: "pt-icon-camera"
 };
 
 export default Plugin;

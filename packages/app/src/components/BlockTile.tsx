@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Block } from "core";
+import { Block } from "../../../core";
+import blocksManager from "../store/BlocksManager";
 
 const TileDiv = styled.div`
   height: 30px;
@@ -15,18 +16,24 @@ const TileDiv = styled.div`
 export interface IBlockTile {
   name: string;
   store: typeof Block;
+  icon: string;
   onNewBlock: (store: any) => void;
 }
 
-export default function BlockTile({ name, store, onNewBlock }: IBlockTile) {
+export default function BlockTile({
+  name,
+  icon,
+  store,
+  onNewBlock
+}: IBlockTile) {
   return (
     <TileDiv
       className="pt-card pt-elevation-0 pt-interactive"
       onClick={() => {
-        onNewBlock(new store());
+        onNewBlock(new store(blocksManager.blocksMeta));
       }}
     >
-      <span className="pt-icon-size pt-icon-application" />
+      <span className={`pt-icon-size ${icon}`} />
       <span>{name}</span>
     </TileDiv>
   );

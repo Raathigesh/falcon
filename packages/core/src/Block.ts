@@ -1,5 +1,14 @@
+import { IBlockMeta } from "./../../app/src/blocks/index";
 import { observable, action, autorun, toJS } from "mobx";
 // import { getByName } from "../../blocks";
+
+export interface IBlockMeta {
+  Category?: string;
+  Label: string;
+  Component: any;
+  Key: string;
+  Store: any;
+}
 
 export default class Block {
   @observable public name: string;
@@ -8,19 +17,19 @@ export default class Block {
   @observable public connectableParents?: string[];
   @observable public connectableChildren?: string[];
   @observable public ComponentClass: any;
-  @observable public isDebug: boolean;
-  @observable counter: number = 0;
+  @observable public isDebug: boolean = false;
+
+  public blocksMeta: IBlockMeta[] = [];
   public model: any;
 
-  constructor() {
+  constructor(blockMeta: IBlockMeta[]) {
     this.parents = [];
     this.children = [];
     this.connectableParents = [];
     this.connectableChildren = [];
     this.ComponentClass = null;
     this.model = null;
-    this.isDebug = true;
-
+    this.blocksMeta = blockMeta;
     autorun(() => {
       console.log(toJS(this));
     });
@@ -34,6 +43,27 @@ export default class Block {
   @action
   public addChild(block: Block) {
     this.children.push(block);
+  }
+
+  @action
+  public toggleDebug() {
+    this.isDebug = !this.isDebug;
+  }
+
+  @action.bound
+  public removeLink() {
+    this.model.removeLink(this.model.ports[0]);
+  }
+
+  public getChild() {
+    const child = this.children[0];
+    if (child) {
+      return child;
+    }
+
+    return {
+      execute: (args: any) => {}
+    };
   }
 
   public async execute({  }: any) {
@@ -56,8 +86,10 @@ export default class Block {
     link: (source: any, target: any) => void
   ) {
     for (let child of children) {
-      const blockMeta = getByName(child.name);
-      const node = new blockMeta.Store();
+      const blockMeta = this.blocksMeta.filter(
+        block => block.Key === child.name
+      )[0];
+      const node = new blockMeta.Store(this.blocksMeta);
       this.children.push(node);
       addNode(node, child.x, child.y);
       link(parent, node);

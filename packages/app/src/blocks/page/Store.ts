@@ -1,6 +1,5 @@
 import { observable, action, asReference } from "mobx";
-import { Block } from "core";
-import BlockNames from "../BlockNames";
+import { Block } from "../../../../core";
 import { DefaultNodeWidget } from "./Component";
 
 export class Store extends Block {
@@ -9,7 +8,7 @@ export class Store extends Block {
 
   constructor() {
     super();
-    this.name = BlockNames.Page.Name;
+    this.name = "Page";
     this.ComponentClass = DefaultNodeWidget;
   }
 

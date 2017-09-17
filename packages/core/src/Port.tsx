@@ -4,6 +4,7 @@ import styled from "styled-components";
 export interface PortProps {
   name: string;
   node: any;
+  onRemove: () => {};
 }
 
 export interface PortState {
@@ -37,7 +38,14 @@ export default class PortWidget extends React.Component<PortProps, PortState> {
         className="port"
         data-name={this.props.name}
         data-nodeid={this.props.node.getID()}
-      />
+      >
+        <a
+          className={`pt-button pt-icon-small-cross`}
+          onClick={this.props.onRemove}
+        >
+          {name}
+        </a>
+      </ConnectorSpan>
     );
   }
 }
