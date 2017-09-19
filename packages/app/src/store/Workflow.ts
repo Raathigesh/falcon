@@ -1,10 +1,12 @@
-import { observable, action, IObservableArray } from "mobx";
-import { Block } from "../../../core";
+import { observable, action, IObservableArray, extras } from "mobx";
+import { Block } from "core";
 import DiagramManager from "../diagram/DiagramEngineConfig";
 import { getByName } from "../blocks";
 import ExecutionContext from "./Context";
 import { save, open } from "./ShellHandler";
 import blocksManager from "./BlocksManager";
+
+extras.shareGlobalState();
 
 class Workflow {
   @observable public blocks: IObservableArray<Block>;

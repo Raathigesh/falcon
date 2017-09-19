@@ -50,11 +50,10 @@
     "@types/electron": "1.4.30",
     "@types/electron-devtools-installer": "2.0.2",
     "@types/lodash": "^4.14.74",
-    "@types/react": "0.14.55",
-    "@types/react-dom": "0.14.20",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
     "electron-compile": "^6.4.1",
     "electron-devtools-installer": "2.0.1",
-    "glamorous": "^4.7.0",
     "jsonfile": "^4.0.0",
     "lodash": "^4.17.4",
     "puppeteer": "^0.10.2",
@@ -67,8 +66,10 @@
     "react-json-tree": "^0.10.9",
     "react-json-view": "^1.12.4",
     "storm-react-diagrams": "^2.5.0",
-    "styled-components": "^2.1.2",
-    "tslib": "1.4.0"
+    "styled-components": "^2.1.2",    
+    "mobx": "^3.2.2",
+    "mobx-react": "^4.2.2",
+    "core": "1.0.0"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
@@ -77,6 +78,6 @@
     "electron-forge": "^3.2.0",
     "electron-prebuilt-compile": "1.7.5",
     "tslint": "5.1.0",
-    "typescript": "~2.2.2"
+    "typescript": "2.4.2"
   }
 }

@@ -1,10 +1,8 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
-import { Checkbox, Popover, Icon, Intent } from "@blueprintjs/core";
 import { observer } from "mobx-react";
-import { observable } from "mobx";
 import Details from "./Details";
-import { Frame } from "../../../../core";
+import { Frame } from "core";
 
 export interface DefaultNodeProps {
   node: DefaultNodeModel;

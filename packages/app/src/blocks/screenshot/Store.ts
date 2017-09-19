@@ -1,10 +1,10 @@
 import { observable, action, asReference } from "mobx";
-import { Block } from "../../../../core";
+import { Block } from "core";
 import { DefaultNodeWidget } from "./Component";
 
 export class Store extends Block {
-  constructor() {
-    super();
+  constructor(blocks) {
+    super(blocks);
     this.name = "Screenshot";
     this.ComponentClass = DefaultNodeWidget;
   }

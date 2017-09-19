@@ -1,3 +1,5 @@
+/// <reference types="react" />
+import * as React from "react";
 export interface IFrame {
     node: any;
     name: string;
@@ -5,8 +7,9 @@ export interface IFrame {
     icon: string;
     children?: any;
     details?: any;
-    onRemove: () => void;
+    onRemove?: () => void;
     onDebugToggle?: () => void;
+    onRemoveLink: () => void;
 }
-declare const _default: any;
+declare const _default: React.ClassicComponentClass<IFrame>;
 export default _default;

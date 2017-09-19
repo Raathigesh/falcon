@@ -55,6 +55,7 @@ class DiagramManager {
 
     const outPort = node.addPort(new DefaultPortModel(false, "out-1", "Out"));
     const inPort = node.addPort(new DefaultPortModel(true, "in-1", "In"));
+
     node.x = x;
     node.y = y;
     store.model = node;

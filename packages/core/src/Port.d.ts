@@ -3,6 +3,7 @@ import * as React from "react";
 export interface PortProps {
     name: string;
     node: any;
+    onRemove?: () => void;
 }
 export interface PortState {
     selected: boolean;

@@ -1,6 +1,5 @@
-import { IBlockMeta } from "./../../app/src/blocks/index";
-import { observable, action, autorun, toJS } from "mobx";
-// import { getByName } from "../../blocks";
+import { observable, action, autorun, toJS, extras } from "mobx";
+extras.shareGlobalState();
 
 export interface IBlockMeta {
   Category?: string;
@@ -64,6 +63,10 @@ export default class Block {
     return {
       execute: (args: any) => {}
     };
+  }
+
+  public getParent() {
+    return this.parents[0];
   }
 
   public async execute({  }: any) {

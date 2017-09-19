@@ -1,5 +1,5 @@
 import { observable, action, asReference, autorun, toJS } from "mobx";
-import { Block } from "../../../../core";
+import { Block } from "core";
 import { DefaultNodeWidget } from "./Component";
 
 import * as Puppeteer from "puppeteer";

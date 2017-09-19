@@ -1,7 +1,6 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
-import { ElectronHandler } from "../../../../core";
-import { Frame } from "../../../../core";
+import { Frame, ElectronHandler } from "core";
 import { Store } from "./Store";
 
 export interface DefaultNodeProps {

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { DiagramEngine, DefaultNodeModel } from "storm-react-diagrams";
 import styled from "styled-components";
-import { ElectronHandler } from "../../../../core";
-import { Frame } from "../../../../core";
+import { Frame, ElectronHandler } from "core";
 import { Store } from "./Store";
 
 const SelectorInput = styled.input`width: 126px !important;`;

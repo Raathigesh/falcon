@@ -1,5 +1,4 @@
 import * as React from "react";
-import { toJS } from "mobx";
 import { observer } from "mobx-react";
 import Draggable from "react-draggable";
 import styled from "styled-components";

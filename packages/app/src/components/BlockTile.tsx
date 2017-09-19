@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Block } from "../../../core";
+import { Block } from "core";
 import blocksManager from "../store/BlocksManager";
 
 const TileDiv = styled.div`
