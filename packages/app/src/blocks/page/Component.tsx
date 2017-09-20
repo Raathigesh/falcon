@@ -28,13 +28,13 @@ export class DefaultNodeWidget extends React.Component<
     const { node, diagramEngine, store } = this.props;
     return (
       <Frame
+        store={store}
         icon="pt-icon-page-layout"
         node={node}
         onRemove={() => {
           node.remove();
           diagramEngine.repaintCanvas();
         }}
-        name={this.props.store.name}
       >
         <Url
           placeholder="Url goes here"

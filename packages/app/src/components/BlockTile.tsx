@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { Block } from "core";
 import blocksManager from "../store/BlocksManager";
+import EletronHandler from "../store/ElectronHandler";
 
 const TileDiv = styled.div`
   height: 30px;
@@ -30,7 +31,7 @@ export default function BlockTile({
     <TileDiv
       className="pt-card pt-elevation-0 pt-interactive"
       onClick={() => {
-        onNewBlock(new store(blocksManager.blocksMeta));
+        onNewBlock(new store(blocksManager.blocksMeta, EletronHandler));
       }}
     >
       <span className={`pt-icon-size ${icon}`} />

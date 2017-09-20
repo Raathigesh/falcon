@@ -64,7 +64,6 @@ function Toolbox({
   context,
   onNewBlock,
   onRun,
-  onBoot,
   onOpen,
   onSave
 }: IToolbox) {
@@ -87,7 +86,7 @@ function Toolbox({
               onClick={onOpen}
             />
           </ActionPanel>
-          <div className="pt-input-group .modifier">
+          <div className="pt-input-group">
             <span className="pt-icon pt-icon-search" />
             <input
               className="pt-input"

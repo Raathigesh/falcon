@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Popover, Button } from "@blueprintjs/core";
+import { Popover, Button, Intent } from "@blueprintjs/core";
 import { observer } from "mobx-react";
 import Port from "./Port";
 
@@ -26,14 +26,17 @@ const Content = styled.div`padding-top: 10px;`;
 
 export interface IFrame {
   node: any;
-  name: string;
-  isDebug?: boolean;
   icon: string;
   children?: any;
   details?: any;
   onRemove?: () => void;
-  onDebugToggle?: () => void;
-  onRemoveLink: () => void;
+  store: {
+    name: string;
+    isDebug?: boolean;
+    isPaused: boolean;
+    removeLink: () => void;
+    toggleDebug: () => void;
+  };
 }
 
 const IconPanel = styled.div`
@@ -41,17 +44,8 @@ const IconPanel = styled.div`
   border-radius: 5px;
 `;
 
-function Frame({
-  node,
-  name,
-  isDebug,
-  children,
-  details,
-  icon,
-  onRemove,
-  onDebugToggle,
-  onRemoveLink
-}: IFrame) {
+function Frame({ node, store, children, details, icon, onRemove }: IFrame) {
+  const { isPaused } = store;
   return (
     <Container>
       {node.getInPorts().map(port => {
@@ -60,11 +54,12 @@ function Frame({
       <Card className="pt-card pt-elevation-0">
         <Header>
           <IconPanel className="pt-button-group pt-minimal">
-            <a className={`pt-button ${icon}`}>{name}</a>
+            <a className={`pt-button ${icon}`}>{store.name}</a>
             <Button
               iconName="pt-icon-selection"
-              onClick={onDebugToggle}
-              active={isDebug}
+              intent={isPaused ? Intent.DANGER : Intent.NONE}
+              onClick={store.toggleDebug}
+              active={store.isDebug}
             />
             <a
               className="pt-button pt-icon-cross pt-intent-primary"
@@ -87,7 +82,7 @@ function Frame({
           <Port
             node={port.getParent()}
             name={port.name}
-            onRemove={onRemoveLink}
+            onRemove={store.removeLink}
           />
         );
       })}

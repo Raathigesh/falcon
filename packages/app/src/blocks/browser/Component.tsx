@@ -25,18 +25,13 @@ export class DefaultNodeWidget extends React.Component<
   render() {
     return (
       <Frame
-        onRemoveLink={this.props.store.removeLink}
-        isDebug={this.props.store.isDebug}
+        store={this.props.store}
         icon="pt-icon-applications"
-        onDebugToggle={() => {
-          this.props.store.toggleDebug();
-        }}
         node={this.props.node}
         onRemove={() => {
           this.props.node.remove();
           this.props.diagramEngine.repaintCanvas();
         }}
-        name={this.props.store.name}
         details={<Details />}
       />
     );

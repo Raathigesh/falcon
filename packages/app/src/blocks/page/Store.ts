@@ -1,5 +1,5 @@
 import { observable, action, asReference } from "mobx";
-import { Block } from "core";
+import { Block, IExecutionResult } from "core";
 import { DefaultNodeWidget } from "./Component";
 
 export class Store extends Block {
@@ -17,12 +17,19 @@ export class Store extends Block {
     this.url = url;
   }
 
-  public async execute({ browser }: any) {
+  public async execute({ browser }: any): Promise<IExecutionResult> {
     this.page = await browser.newPage();
     await this.page.goto(this.url);
 
-    if (this.children[0]) {
-      this.children[0].execute({ page: this.page, url: this.url });
-    }
+    return {
+      debug: {
+        browser: browser,
+        page: this.page
+      },
+      continue: () => {
+        return this.getChild().execute({ page: this.page, url: this.url });
+      },
+      block: this
+    };
   }
 }

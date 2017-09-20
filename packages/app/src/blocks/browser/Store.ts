@@ -1,8 +1,14 @@
-import { observable, action, asReference, autorun, toJS } from "mobx";
+import { observable } from "mobx";
 import { Block } from "core";
 import { DefaultNodeWidget } from "./Component";
 
 import * as Puppeteer from "puppeteer";
+
+export interface IExecutionResult {
+  debug: any;
+  continue: () => IExecutionResult;
+  block: Block;
+}
 
 export class Store extends Block {
   public browser: any;
@@ -12,9 +18,17 @@ export class Store extends Block {
     this.ComponentClass = DefaultNodeWidget;
   }
 
-  public async execute({ context }) {
+  public async execute(): Promise<IExecutionResult> {
     this.browser = await Puppeteer.launch({ headless: false });
-    context.executionResult = this.browser;
-    this.getChild().execute({ browser: this.browser });
+
+    return {
+      debug: {
+        browser: this.browser
+      },
+      continue: () => {
+        return this.getChild().execute({ browser: this.browser });
+      },
+      block: this
+    };
   }
 }

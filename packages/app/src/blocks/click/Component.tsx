@@ -25,12 +25,12 @@ export class DefaultNodeWidget extends React.Component<
     return (
       <Frame
         icon="pt-icon-select"
+        store={store}
         node={this.props.node}
         onRemove={() => {
           this.props.node.remove();
           this.props.diagramEngine.repaintCanvas();
         }}
-        name={this.props.store.name}
       >
         <div className="pt-control-group">
           <div className="pt-input-group pt-fill">

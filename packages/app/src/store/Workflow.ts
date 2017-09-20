@@ -8,6 +8,12 @@ import blocksManager from "./BlocksManager";
 
 extras.shareGlobalState();
 
+export interface IExecutionResult {
+  debug: any;
+  continue: () => IExecutionResult;
+  block: Block;
+}
+
 class Workflow {
   @observable public blocks: IObservableArray<Block>;
   @observable public diagramModel: DiagramManager;
@@ -29,10 +35,34 @@ class Workflow {
   }
 
   @action.bound
-  play() {
-    this.blocks[0].execute({
-      context: this.context
-    });
+  async play() {
+    if (this.context.isPaused) {
+      this.context.currentBlock.setIsPaused(false);
+      const result = await this.context.resumeHandler();
+      this.run(result);
+    } else {
+      const initialBlock = this.blocks[0];
+      const result = await initialBlock.execute({
+        context: this.context
+      });
+      this.run(result);
+    }
+  }
+
+  async run(result: IExecutionResult) {
+    const { block } = result;
+    if (block.isDebug) {
+      block.setIsPaused(true);
+      this.context.isPaused = true;
+      this.context.executionResult = result.debug;
+      this.context.resumeHandler = result.continue;
+      this.context.currentBlock = result.block;
+    } else {
+      const newResult: IExecutionResult = await result.continue();
+      if (newResult) {
+        this.run(newResult);
+      }
+    }
   }
 
   getObj() {

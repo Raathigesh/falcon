@@ -27,13 +27,13 @@ export class DefaultNodeWidget extends React.Component<
     const { store } = this.props;
     return (
       <Frame
+        store={store}
         node={this.props.node}
         icon="pt-icon-control"
         onRemove={() => {
           this.props.node.remove();
           this.props.diagramEngine.repaintCanvas();
         }}
-        name={this.props.store.name}
       >
         <div className="pt-control-group">
           <div className="pt-input-group pt-fill">
@@ -51,7 +51,7 @@ export class DefaultNodeWidget extends React.Component<
           <button
             className="pt-button pt-intent-primary"
             onClick={() => {
-              ElectronHandler.OpenNewWindow(store.pageUrl);
+              store.handlers.OpenNewWindow(store.pageUrl);
             }}
           >
             Open page

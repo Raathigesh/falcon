@@ -1,4 +1,6 @@
 import { observable, action, autorun, toJS, extras } from "mobx";
+import IElectronHandler from "./IElectronHandler";
+
 extras.shareGlobalState();
 
 export interface IBlockMeta {
@@ -9,6 +11,12 @@ export interface IBlockMeta {
   Store: any;
 }
 
+export interface IExecutionResult {
+  debug: any;
+  continue: () => IExecutionResult;
+  block: Block;
+}
+
 export default class Block {
   @observable public name: string;
   @observable public parents?: Block[];
@@ -17,11 +25,13 @@ export default class Block {
   @observable public connectableChildren?: string[];
   @observable public ComponentClass: any;
   @observable public isDebug: boolean = false;
+  @observable public isPaused: boolean = false;
 
   public blocksMeta: IBlockMeta[] = [];
   public model: any;
+  public handlers: IElectronHandler;
 
-  constructor(blockMeta: IBlockMeta[]) {
+  constructor(blockMeta: IBlockMeta[], handlers?: IElectronHandler) {
     this.parents = [];
     this.children = [];
     this.connectableParents = [];
@@ -29,22 +39,23 @@ export default class Block {
     this.ComponentClass = null;
     this.model = null;
     this.blocksMeta = blockMeta;
+    this.handlers = handlers;
     autorun(() => {
       console.log(toJS(this));
     });
   }
 
-  @action
+  @action.bound
   public addParent(block: Block) {
     this.parents.push(block);
   }
 
-  @action
+  @action.bound
   public addChild(block: Block) {
     this.children.push(block);
   }
 
-  @action
+  @action.bound
   public toggleDebug() {
     this.isDebug = !this.isDebug;
   }
@@ -54,6 +65,11 @@ export default class Block {
     this.model.removeLink(this.model.ports[0]);
   }
 
+  @action.bound
+  public setIsPaused(value: boolean) {
+    this.isPaused = value;
+  }
+
   public getChild() {
     const child = this.children[0];
     if (child) {
@@ -61,7 +77,7 @@ export default class Block {
     }
 
     return {
-      execute: (args: any) => {}
+      execute: (args: any) => null
     };
   }
 
@@ -69,7 +85,11 @@ export default class Block {
     return this.parents[0];
   }
 
-  public async execute({  }: any) {
+  public async execute({  }: any): Promise<IExecutionResult> {
+    if (this.isDebug) {
+      this.setIsPaused(true);
+    }
+
     return null;
   }
 

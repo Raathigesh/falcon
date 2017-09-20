@@ -20,15 +20,16 @@ export class DefaultNodeWidget extends React.Component<
   }
 
   render() {
+    const { store } = this.props;
     return (
       <Frame
+        store={store}
         icon="pt-icon-camera"
         node={this.props.node}
         onRemove={() => {
           this.props.node.remove();
           this.props.diagramEngine.repaintCanvas();
         }}
-        name={this.props.store.name}
       >
         screenstff
       </Frame>

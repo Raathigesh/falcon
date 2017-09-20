@@ -1,5 +1,5 @@
 import { observable, computed, action, asReference } from "mobx";
-import { Block } from "core";
+import { Block, IExecutionResult } from "core";
 
 import { DefaultNodeWidget } from "./Component";
 
@@ -25,7 +25,23 @@ export class Store extends Block {
     return (this.parents[0] as any).url;
   }
 
-  public async execute({ page, element }: any) {
+  public async execute({
+    browser,
+    page,
+    element
+  }: any): Promise<IExecutionResult> {
     await page.type("Hello world", { delay: 100 });
+
+    return {
+      debug: {
+        browser,
+        page,
+        element
+      },
+      continue: () => {
+        return this.getChild().execute({ page, browser, element });
+      },
+      block: this
+    };
   }
 }

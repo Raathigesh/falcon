@@ -1,13 +1,13 @@
 import { observable, computed, action, asReference } from "mobx";
-import { Block } from "core";
+import { Block, IExecutionResult, IElectronHandler } from "core";
 
 import { DefaultNodeWidget } from "./Component";
 
 export class Store extends Block {
   @observable public selector: string = null;
   public elementHandler: any = null;
-  constructor(blocks) {
-    super(blocks);
+  constructor(blocks, handlers: IElectronHandler) {
+    super(blocks, handlers);
     this.name = "Element";
     this.ComponentClass = DefaultNodeWidget;
   }
@@ -25,8 +25,18 @@ export class Store extends Block {
     return (this.parents[0] as any).url;
   }
 
-  public async execute({ page }: any) {
+  public async execute({ page }: any): Promise<IExecutionResult> {
     this.elementHandler = await page.$(this.selector);
-    this.children[0].execute({ page, element: this.elementHandler });
+
+    return {
+      debug: {
+        page: page,
+        element: this.elementHandler
+      },
+      continue: () => {
+        return this.getChild().execute({ page, element: this.elementHandler });
+      },
+      block: this
+    };
   }
 }
