@@ -118,7 +118,7 @@ function Toolbox({
           })}
         </Container>
       </Draggable>
-      <DebugPanel context={context} />
+      {context.isPaused && <DebugPanel context={context} />}
     </div>
   );
 }

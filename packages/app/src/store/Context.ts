@@ -8,7 +8,7 @@ export interface IExecutionResult {
 
 export default class ExecutionContext {
   @observable public executionResult: any = null;
-  public isPaused: boolean = false;
+  @observable public isPaused: boolean = false;
   public resumeHandler: () => IExecutionResult;
   public currentBlock: Block = null;
 }

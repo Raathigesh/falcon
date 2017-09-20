@@ -50,6 +50,8 @@ class Workflow {
   }
 
   async run(result: IExecutionResult) {
+    if (!result) return;
+
     const { block } = result;
     if (block.isDebug) {
       block.setIsPaused(true);
